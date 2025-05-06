@@ -1,0 +1,17 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'package'
+
+- script: ls target
+  displayName: 'Check contents of target directory'
+
+- script: java -jar target/demoMaven-0.0.1-SNAPSHOT.jar
+  displayName: 'Run the JAR file of my demoMaven App'
